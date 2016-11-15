@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../views/partials/head %>
+	<title>CityKids - Galeria de Imagenes</title>
+	
+	<link rel="stylesheet" type="text/css" href="/css/gallery.css">
+</head>
+
+<body ng-app="galleryApp" ng-cloak>
+<div class="container" ng-controller="galleryCtrl">
+
+	<% include ../views/partials/header %>
+	
+	<ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons ">pageview</i>Busquedas</div>
+      <div class="collapsible-body">
+
+				<div id="filters" class="row section"> 
+
+					<!-- Dropdown Trigger -->
+				  <a class='dropdown-button btn red' href='#' data-activates='dropdownFilter' data-constrainwidth="false">Filtrar</a>
+
+				  <!-- Dropdown Structure -->
+				  <ul id='dropdownFilter' class='dropdown-content red'>
+				    <li><a href="#!" ng-click="findByTag ='Bees'">Sala Bees</a></li>
+				    <li><a href="#!" ng-click="findByTag ='Puppies'">Sala Puppies</a></li>
+				    <li><a href="#!" ng-click="findByTag ='Kitties'">Sala Kitties</a></li>
+				    <li><a href="#!" ng-click="findByTag ='Monkeys'">Sala Monkeys</a></li>
+				    <li><a href="#!" ng-click="findByTag ='Parque'">Parque</a></li>
+				    <li class="divider"></li>
+				    <li><a href="#!" ng-click="findByTag ='Eventos'">Eventos</a></li>
+				    <li><a href="#!" ng-click="findByTag ='Bees'">Mi(s) Hijo(s)</a></li>
+				    <li class="divider"></li>
+				    <li><a href="#!" ng-click="findByTag =''">Limpiar Filtro</a></li>
+				  </ul>
+
+					<span> 
+						<div class="input-field inline">
+			        <input id="palabra" type="text" class="validate" placeholder="ó por palabra" ng-model="findByTag">
+			      </div>
+					</span>
+			</div>
+			</div>
+    </li>
+  </ul>
+	
+	<div class="row" >
+    <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity">
+    	<div id="imagen">
+    		<img class="responsive-img materialboxed" data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }} mamaita" ng-src="/photos/{{ gallery.name }}" >
+			</div>
+
+      <ul id="optionsPicture" class="collection">
+      	<li class="collection-item valign-wrapper">
+      		<a href="#!" ng-click="like(idPicture, $index)">
+      			<i class="material-icons">favorite</i>
+      		</a>
+	      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
+	        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
+      	</li>
+	      <li class="collection-item valign-wrapper tooltipped" data-position="bottom" data-delay="10" data-tooltip="{{ gallery.tag.join(', ') }}">
+	      	<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags</li>
+	      <li class="collection-item valign-wrapper">
+	      	<a href="#modalComment">
+	      		<i class="material-icons">speaker_notes</i> {{ gallery.comments.length }} Comentarios</li>
+	      	</a>
+	    </ul>
+
+	    <!-- Modal Structure -->
+		  <div id="modalComment" class="modal modal-fixed-footer">
+		    <div class="modal-content">
+		      <h4>Modal Header</h4>
+		      <p>A bunch of text</p>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+		    </div>
+		  </div>
+
+			<!-- <ul class="collapsible" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">label_outline</i>Tags</div>
+		      <div class="collapsible-body"><p>{{ gallery.tag.join(", ") }}</p></div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios</div>
+		      <div class="collapsible-body">
+		      	<div id="commentPicture" ng-repeat="comment in gallery.comments">
+	        		<strong>{{ comment.user }}</strong> {{ comment.msg }}
+	        		<hr>
+	      		</div>
+	      	</div>
+		    </li>
+		  </ul> -->
+
+	 	</div> 
+	 	
+	 	<div id="morePicturesBtn" class="col s12 m12 l12">
+		  <a class="waves-effect waves-light btn red" ng-click="verMas()">
+		  	<i class="material-icons right">add_to_photos</i>Ver mas...
+		  </a>  
+		</div>
+
+		
+	</div>
+
+	
+
+	<% include ../views/partials/footer %>
+
+	<!-- My Angular controller -->
+  <script src="../controllers/ctrllerGallery.js"></script>
+
+	
+
+</div>          
+</body>
+</html>

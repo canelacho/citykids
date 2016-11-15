@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../views/partials/head %>
+	<title>Login CityKids</title>
+</head>
+
+<body ng-app="loginApp" ng-cloak>
+
+<div layout="row" layout-align="center" ng-controller="loginCtrl">
+  <div flex="30" layout="column">
+
+		<div>
+      <img class="responsive-img left" src="/img/logo_citykids.png" style="width:140px; padding-left:5px; padding-top:5px">
+
+    </div>
+
+  	<form name="loginForm" >
+
+      <md-input-container class="md-block">
+        <label><i class="material-icons prefix">account_circle</i> Login</label>
+        <input required type="text" name="userLogin" ng-model="user" md-no-asterisk />
+        <div ng-messages="loginForm.userLogin.$error" md-auto-hide="true" >
+          <div ng-message-exp="['required']">
+            Debe contar con un nombre de usuario para poder ingresar.
+          </div>
+        </div>
+    	</md-input-container>
+
+      <md-input-container class="md-block">
+        <label><i class="material-icons prefix">fingerprint</i> Password</label>
+        <input required type="password" md-no-asterisk name="password"  ng-model="pwd">
+        <div ng-messages="loginForm.password.$error" md-auto-hide="false">
+        	<div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-button class="md-warn md-raised md-hue-2" ng-click="login(user, pwd)">Entrar</md-button>
+
+    </form>
+
+  </div>
+  
+</div>
+
+	<% include ../views/partials/footer %>
+
+	<!-- My Angular controller -->
+  <script src="../controllers/ctrllerLogin.js"></script>
+           
+</body>
+</html>
