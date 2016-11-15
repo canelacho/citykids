@@ -2,7 +2,7 @@ var
 		http = require('http'),
 		express = require('express'),
 		app = express(),
-		serverPort = 8080,
+		serverPort = 3005,
 		bodyParser = require('body-parser'),
 		session = require('express-session'),
 		mongoose = require('mongoose'),
