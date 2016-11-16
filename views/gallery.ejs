@@ -22,7 +22,7 @@
 <!-- NAV BAR end -->
 
 
-<!-- filtros de busqueda -->
+<!-- QUERY FOR SEARCHS -->
 <ul class="collapsible" data-collapsible="accordion">
   <li>
     <div class="collapsible-header"><i class="material-icons ">pageview</i>Busquedas</div>
@@ -56,66 +56,48 @@
 		</div>
   </li>
 </ul>
-<!-- filtros de busqueda end -->
+<!-- QUERY FOR SEARCHS end -->
 
 
-<!-- GALERIA --> 
+<!-- GALLERY --> 
 <div class="row" > 
 
-    <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
+  <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
 
-    	<div id="imagen">
-    		<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
-    			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
-    		</a>
-    		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
-			</div>
-
-      <ul id="optionsPicture" class="collection">
-      	<li class="collection-item valign-wrapper">
-      		<a href="#!" ng-click="like(idPicture, $index)">
-      			<i class="material-icons">favorite</i>
-      		</a>
-	      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
-	        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
-      	</li>
-      	<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
-	      	<li class="collection-item valign-wrapper boxTagComment">
-	      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
-	      	</li>
-	      </a>
-	      <a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
-	      	<li class="collection-item valign-wrapper boxTagComment">
-	      		<i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios
-	      	</li>
-	      </a>
-	    </ul>
-
-	    
-
-			<!-- <ul class="collapsible" data-collapsible="accordion">
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">label_outline</i>Tags</div>
-		      <div class="collapsible-body"><p>{{ gallery.tag.join(", ") }}</p></div>
-		    </li>
-		    <li>
-		      <div class="collapsible-header"><i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios</div>
-		      <div class="collapsible-body">
-		      	<div id="commentPicture" ng-repeat="comment in gallery.comments">
-	        		<strong>{{ comment.user }}</strong> {{ comment.msg }}
-	        		<hr>
-	      		</div>
-	      	</div>
-		    </li>
-		  </ul> -->
-
-	 	</div> 
-	 	
-	 	<div id="morePicturesBtn" class="col s12 m12 l12">
-		  <button id="watchMore" class="waves-effect waves-light btn red" ng-click="watchMore()">
-		  	<i class="material-icons right">add_to_photos</i>Ver mas...
-		  </button>  
+  	<div id="imagen">
+  		<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+  			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
+  		</a>
+  		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
 		</div>
+
+    <ul id="optionsPicture" class="collection">
+    	<li class="collection-item valign-wrapper">
+    		<a href="#!" ng-click="like(idPicture, $index)">
+    			<i class="material-icons">favorite</i>
+    		</a>
+      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
+        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
+    	</li>
+    	<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+      	<li class="collection-item valign-wrapper boxTagComment">
+      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
+      	</li>
+      </a>
+      <a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+      	<li class="collection-item valign-wrapper boxTagComment">
+      		<i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios
+      	</li>
+      </a>
+    </ul>
+
+ 	</div> 
+ 	
+ 	<div id="morePicturesBtn" class="col s12 m12 l12">
+	  <button id="watchMore" class="waves-effect waves-light btn red" ng-click="watchMore()">
+	  	<i class="material-icons right">add_to_photos</i>Ver mas...
+	  </button>  
+	</div>
 
 
  	<!-- Modal Trigger -->
@@ -124,43 +106,34 @@
   <!-- Modal Structure -->
   <div id="megaModal" class="modal">
     <div class="modal-content">
-
+			<i class="material-icons modal-close right">close</i>
       <h4>Insta-Citykids</h4>
       
-      <img class="responsive-img" ng-src="/photos/{{ showNewModal.picture }}" >
+      <img class="responsive-img modalImagen" ng-src="/photos/{{ showNewModal.picture }}" >
       
-      <p>
-      	<i class="material-icons">label_outline</i>{{ showNewModal.tags.join(', ') }} 
+      <p class="valign-wrapper">
+      	<i class="material-icons modalCss">label_outline</i> Tags: {{ showNewModal.tags.join(', ') }} 
       </p>
-      <p>
-      	<i class="material-icons">speaker_notes</i> 
-      		<p id="commentPicture" ng-repeat="comment in showNewModal.comments">
+      <p class="valign-wrapper">
+      	<i class="material-icons modalCss">speaker_notes</i> Comentarios: 
+      		<p ng-repeat="comment in showNewModal.comments">
         		<strong>{{ comment.user }}</strong> {{ comment.msg }}
       		</p>
       </p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cerrar</a>
     </div>
   </div>
 
-
-
-
 </div> 
-<!-- FIN GALERIA -->
+<!-- GALLERY end -->
 
 
 
+</div> <!-- MAIN CONTAINER end -->
 
-</div> <!-- end main container -->
-
-
-
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-<script type="text/javascript" src="/js/materialize.min.js"></script>
+<% include ../views/partials/footer %>
 
 <script>
 

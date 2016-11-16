@@ -12,6 +12,11 @@
   max-width: 100%;*/
 }
 
+.modalImagen {
+  display: block;
+  width:100%;
+}
+
 #optionsPicture i {
 	padding-right:15px;
 	color:grey;
@@ -55,10 +60,14 @@
   color: grey;
 }
 
+.modalCss{
+  padding-right:10px;
+}
 
 
 
 
+/* SEARCH BAR */
 /* label color */
    .input-field label {
      color: #000;
@@ -69,8 +78,8 @@
    }
    /* label underline focus color */
    .input-field input[type=text]:focus {
-     border-bottom: 1px solid grey;
-     box-shadow: 0 1px 0 0 grey;
+     border-bottom: 1px solid white;
+     box-shadow: 0 1px 0 0 white;
    }
    /* valid color */
    .input-field input[type=text].valid {

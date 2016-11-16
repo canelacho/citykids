@@ -1,6 +1,6 @@
 var app = angular.module('galleryApp', []);
 
-app.controller('galleryCtrl',['$scope','$http', '$location', function($scope,$http,$location){
+app.controller('galleryCtrl',['$scope','$http', function($scope,$http){
 
 	console.log('Connected to angular in Gallery controller');
 	
