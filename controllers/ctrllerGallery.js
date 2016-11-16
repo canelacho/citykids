@@ -22,7 +22,7 @@ app.controller('galleryCtrl',['$scope','$http', '$location', function($scope,$ht
 			tags: tags,
 			comments: comments
 		}
-		href="#megaModal"
+		
 	};
 
 	$scope.pictures = [

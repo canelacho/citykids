@@ -3,7 +3,7 @@
 <head>
 
 	<% include ../views/partials/head %>
-	
+
 	<link rel="stylesheet" type="text/css" href="/css/gallery.css">
 
 	<title>Galeria Imagenes Citykids</title>
@@ -20,6 +20,7 @@
 <!-- NAV BAR -->
 <% include ../views/partials/header %>
 <!-- NAV BAR end -->
+
 
 <!-- filtros de busqueda -->
 <ul class="collapsible" data-collapsible="accordion">
@@ -58,8 +59,8 @@
 <!-- filtros de busqueda end -->
 
 
-
-<div class="row" > <!-- GALERIA --> 
+<!-- GALERIA --> 
+<div class="row" > 
 
     <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
 
@@ -78,7 +79,7 @@
 	      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
 	        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
       	</li>
-      	<a  ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+      	<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
 	      	<li class="collection-item valign-wrapper boxTagComment">
 	      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
 	      	</li>
@@ -117,12 +118,6 @@
 		</div>
 
 
-
-
-
-
-
-
  	<!-- Modal Trigger -->
   <!-- <a class="waves-effect waves-light btn red" href="#megaModal">Watch Out</a> -->
 
@@ -132,13 +127,16 @@
 
       <h4>Insta-Citykids</h4>
       
-      <img class="responsive-img" ng-src="/photos/kids1.png" >
+      <img class="responsive-img" ng-src="/photos/{{ showNewModal.picture }}" >
       
       <p>
-      	<i class="material-icons">label_outline</i>{{ gallery.tag.join(', ') }} 
+      	<i class="material-icons">label_outline</i>{{ showNewModal.tags.join(', ') }} 
       </p>
       <p>
       	<i class="material-icons">speaker_notes</i> 
+      		<p id="commentPicture" ng-repeat="comment in showNewModal.comments">
+        		<strong>{{ comment.user }}</strong> {{ comment.msg }}
+      		</p>
       </p>
     </div>
     <div class="modal-footer">
@@ -149,7 +147,8 @@
 
 
 
-	</div> <!-- FIN GALERIA -->
+</div> 
+<!-- FIN GALERIA -->
 
 
 
