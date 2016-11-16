@@ -2,33 +2,26 @@
 <html>
 <head>
 
-
-
-	<!-- ANGULAR -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<% include ../views/partials/head %>
 	
-	<!--Import Google Icon Font-->
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
-
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="/css/gallery.css">
 
 	<title>Galeria Imagenes Citykids</title>
 
-	<link rel="stylesheet" type="text/css" href="/css/gallery.css">
-
 	
-
 
 </head>
 <body ng-app="galleryApp" ng-cloak>
 
-<div class="container" ng-controller="galleryCtrl"> <!-- main container -->
+<!-- MAIN CONTAINER -->
+<div class="container" ng-controller="galleryCtrl"> 
 
-<!-- search bar -->
+
+<!-- NAV BAR -->
+<% include ../views/partials/header %>
+<!-- NAV BAR end -->
+
+<!-- filtros de busqueda -->
 <ul class="collapsible" data-collapsible="accordion">
   <li>
     <div class="collapsible-header"><i class="material-icons ">pageview</i>Busquedas</div>
@@ -62,41 +55,7 @@
 		</div>
   </li>
 </ul>
-<!-- search bar end -->
-
-
-
-<!-- NAV BAR -->
-<!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content' style="background-color:red">
-  <li><a href="#!" style="color:white;">Perfil<i class="material-icons">account_circle</i></a></li>
-  <li class="divider"></li>
-  <li><a href="#!" style="color:white;">Dashboard<i class="material-icons">dashboard</i></a></li>
-  <li><a href="/gallery/a" style="color:white;">Gallery<i class="material-icons">photo_library</i></a></li>
-  <li class="divider"></li>
-  <li>
-    <a href="#!" style="color:white;">
-      Cerrar Sesión <i class="material-icons">exit_to_app</i>
-    </a>
-  </li>
-</ul>
-
-<nav style="background-color:red; margin-bottom:10px; height:80px">
-  <div class="nav-wrapper">
-    <a href="dashboard" class="brand-logo left">
-      <img class="responsive-img left" src="/img/logo_citykids.png" style="width:80px; padding-left:10px; padding-top:5px">
-    </a>
-    <ul class="right">
-      <!-- Dropdown Trigger -->
-      <li>
-        <a class='dropdown-button' href='#' data-activates='dropdown1' data-constrainwidth="false" data-alignment="right">
-          <i class="material-icons right">arrow_drop_down</i>Menú
-        </a>  
-      </li>
-    </ul>
-  </div>
-</nav>
-<!-- NAV BAR end -->
+<!-- filtros de busqueda end -->
 
 
 
@@ -119,7 +78,7 @@
 	      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
 	        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
       	</li>
-      	<a  ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" href="#megaModal">
+      	<a  ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
 	      	<li class="collection-item valign-wrapper boxTagComment">
 	      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
 	      	</li>
