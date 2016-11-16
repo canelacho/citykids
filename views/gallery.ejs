@@ -1,55 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../views/partials/head %>
-	<title>CityKids - Galeria de Imagenes</title>
+
+
+
+	<!-- ANGULAR -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	
+	<!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<title>Galeria Imagenes Citykids</title>
+
 	<link rel="stylesheet" type="text/css" href="/css/gallery.css">
+
+	
+
+
 </head>
-
 <body ng-app="galleryApp" ng-cloak>
-<div class="container" ng-controller="galleryCtrl">
 
-	<% include ../views/partials/header %>
-	
-	<ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons ">pageview</i>Busquedas</div>
-      <div class="collapsible-body">
+<div class="container" ng-controller="galleryCtrl"> <!-- main container -->
 
-				<div id="filters" class="row section"> 
+<!-- search bar -->
+<ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons ">pageview</i>Busquedas</div>
+    <div class="collapsible-body">
 
-					<!-- Dropdown Trigger -->
-				  <a class='dropdown-button btn red' href='#' data-activates='dropdownFilter' data-constrainwidth="false">Filtrar</a>
+			<div id="filters" class="row section"> 
 
-				  <!-- Dropdown Structure -->
-				  <ul id='dropdownFilter' class='dropdown-content red'>
-				    <li><a href="#!" ng-click="findByTag ='Bees'">Sala Bees</a></li>
-				    <li><a href="#!" ng-click="findByTag ='Puppies'">Sala Puppies</a></li>
-				    <li><a href="#!" ng-click="findByTag ='Kitties'">Sala Kitties</a></li>
-				    <li><a href="#!" ng-click="findByTag ='Monkeys'">Sala Monkeys</a></li>
-				    <li><a href="#!" ng-click="findByTag ='Parque'">Parque</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!" ng-click="findByTag ='Eventos'">Eventos</a></li>
-				    <li><a href="#!" ng-click="findByTag ='Bees'">Mi(s) Hijo(s)</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!" ng-click="findByTag =''">Limpiar Filtro</a></li>
-				  </ul>
+				<!-- Dropdown Trigger -->
+			  <a class='dropdown-button btn red' href='#' data-activates='dropdownFilter' data-constrainwidth="false">Filtrar</a>
 
-					<span> 
-						<div class="input-field inline">
-			        <input id="palabra" type="text" class="validate" placeholder="ó por palabra" ng-model="findByTag">
-			      </div>
-					</span>
-			</div>
-			</div>
-    </li>
-  </ul>
-	
-	<div class="row" >
-    <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity">
+			  <!-- Dropdown Structure -->
+			  <ul id='dropdownFilter' class='dropdown-content red'>
+			    <li><a href="#!" ng-click="findByTag ='Bees'">Sala Bees</a></li>
+			    <li><a href="#!" ng-click="findByTag ='Puppies'">Sala Puppies</a></li>
+			    <li><a href="#!" ng-click="findByTag ='Kitties'">Sala Kitties</a></li>
+			    <li><a href="#!" ng-click="findByTag ='Monkeys'">Sala Monkeys</a></li>
+			    <li><a href="#!" ng-click="findByTag ='Parque'">Parque</a></li>
+			    <li class="divider"></li>
+			    <li><a href="#!" ng-click="findByTag ='Eventos'">Eventos</a></li>
+			    <li><a href="#!" ng-click="findByTag ='Bees'">Mi(s) Hijo(s)</a></li>
+			    <li class="divider"></li>
+			    <li><a href="#!" ng-click="findByTag =''">Limpiar Filtro</a></li>
+			  </ul>
+
+				<span> 
+					<div class="input-field inline">
+		        <input id="palabra" type="text" class="validate" placeholder="ó por palabra" ng-model="findByTag">
+		      </div>
+				</span>
+		</div>
+		</div>
+  </li>
+</ul>
+<!-- search bar end -->
+
+
+
+<!-- NAV BAR -->
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content' style="background-color:red">
+  <li><a href="#!" style="color:white;">Perfil<i class="material-icons">account_circle</i></a></li>
+  <li class="divider"></li>
+  <li><a href="#!" style="color:white;">Dashboard<i class="material-icons">dashboard</i></a></li>
+  <li><a href="/gallery/a" style="color:white;">Gallery<i class="material-icons">photo_library</i></a></li>
+  <li class="divider"></li>
+  <li>
+    <a href="#!" style="color:white;">
+      Cerrar Sesión <i class="material-icons">exit_to_app</i>
+    </a>
+  </li>
+</ul>
+
+<nav style="background-color:red; margin-bottom:10px; height:80px">
+  <div class="nav-wrapper">
+    <a href="dashboard" class="brand-logo left">
+      <img class="responsive-img left" src="/img/logo_citykids.png" style="width:80px; padding-left:10px; padding-top:5px">
+    </a>
+    <ul class="right">
+      <!-- Dropdown Trigger -->
+      <li>
+        <a class='dropdown-button' href='#' data-activates='dropdown1' data-constrainwidth="false" data-alignment="right">
+          <i class="material-icons right">arrow_drop_down</i>Menú
+        </a>  
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- NAV BAR end -->
+
+
+
+<div class="row" > <!-- GALERIA --> 
+
+    <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
+
     	<div id="imagen">
-    		<img class="responsive-img materialboxed" data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }} mamaita" ng-src="/photos/{{ gallery.name }}" >
+    		<a href="#megaModal">
+    			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
+    		</a>
+    		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
 			</div>
 
       <ul id="optionsPicture" class="collection">
@@ -60,24 +119,19 @@
 	      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
 	        <a ng-href="/photos/{{ gallery.name }}" download><i class="material-icons">cloud_download</i></a>
       	</li>
-	      <li class="collection-item valign-wrapper tooltipped" data-position="bottom" data-delay="10" data-tooltip="{{ gallery.tag.join(', ') }}">
-	      	<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags</li>
-	      <li class="collection-item valign-wrapper">
-	      	<a href="#modalComment">
-	      		<i class="material-icons">speaker_notes</i> {{ gallery.comments.length }} Comentarios</li>
-	      	</a>
+      	<a  ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" href="#megaModal">
+	      	<li class="collection-item valign-wrapper boxTagComment">
+	      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
+	      	</li>
+	      </a>
+	      <a href="#megaModal">
+	      	<li class="collection-item valign-wrapper boxTagComment">
+	      		<i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios
+	      	</li>
+	      </a>
 	    </ul>
 
-	    <!-- Modal Structure -->
-		  <div id="modalComment" class="modal modal-fixed-footer">
-		    <div class="modal-content">
-		      <h4>Modal Header</h4>
-		      <p>A bunch of text</p>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
-		    </div>
-		  </div>
+	    
 
 			<!-- <ul class="collapsible" data-collapsible="accordion">
 		    <li>
@@ -98,23 +152,81 @@
 	 	</div> 
 	 	
 	 	<div id="morePicturesBtn" class="col s12 m12 l12">
-		  <a class="waves-effect waves-light btn red" ng-click="verMas()">
+		  <button id="watchMore" class="waves-effect waves-light btn red" ng-click="watchMore()">
 		  	<i class="material-icons right">add_to_photos</i>Ver mas...
-		  </a>  
+		  </button>  
 		</div>
 
-		
-	</div>
 
+
+
+
+
+
+
+ 	<!-- Modal Trigger -->
+  <!-- <a class="waves-effect waves-light btn red" href="#megaModal">Watch Out</a> -->
+
+  <!-- Modal Structure -->
+  <div id="megaModal" class="modal">
+    <div class="modal-content">
+
+      <h4>Insta-Citykids</h4>
+      
+      <img class="responsive-img" ng-src="/photos/kids1.png" >
+      
+      <p>
+      	<i class="material-icons">label_outline</i>{{ gallery.tag.join(', ') }} 
+      </p>
+      <p>
+      	<i class="material-icons">speaker_notes</i> 
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+    </div>
+  </div>
+
+
+
+
+	</div> <!-- FIN GALERIA -->
+
+
+
+
+</div> <!-- end main container -->
+
+
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="/js/materialize.min.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal({
+      dismissible: false, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      in_duration: 200, // Transition in duration
+      out_duration: 200, // Transition out duration
+      starting_top: '4%', // Starting top style attribute
+      ending_top: '10%', // Ending top style attribute
+      // ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+      //   alert("Ready");
+      //   console.log(modal, trigger);
+      // },
+      // complete: function() { alert('Closed'); } // Callback for Modal close
+	  });
+	});
 	
+</script>
 
-	<% include ../views/partials/footer %>
+<!-- My Angular controller -->
+<script src="../controllers/ctrllerGallery.js"></script>
 
-	<!-- My Angular controller -->
-  <script src="../controllers/ctrllerGallery.js"></script>
-
-	
-
-</div>          
 </body>
 </html>
