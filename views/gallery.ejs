@@ -65,7 +65,7 @@
     <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
 
     	<div id="imagen">
-    		<a href="#megaModal">
+    		<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
     			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
     		</a>
     		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
@@ -84,7 +84,7 @@
 	      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
 	      	</li>
 	      </a>
-	      <a href="#megaModal">
+	      <a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
 	      	<li class="collection-item valign-wrapper boxTagComment">
 	      		<i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios
 	      	</li>
