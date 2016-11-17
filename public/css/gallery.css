@@ -1,6 +1,7 @@
 #imagen {
 	background-color:white;
-	height:180px;	 
+	height:180px;
+  overflow: hidden;	 
 }
 
 #imagen img {

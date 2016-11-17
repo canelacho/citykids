@@ -2,6 +2,11 @@ module.exports = function(app){
 
 	User = require('../models/user');
 
+	loginGet = function(req, res){
+		res.render('login')
+	}
+
+
 	loginUser = function(req, res){
 		console.log('Starting to login');
 		console.log(req.body);
@@ -28,6 +33,7 @@ module.exports = function(app){
 
 	// Link routes
 
+	app.get('/login', loginGet);
 	app.post('/login', loginUser);
 
 };

@@ -8,5 +8,5 @@ module.exports = function(app){
 
 	// Link routes
 
-	app.get('/gallery/:id', loadMyGallery);
+	app.get('/gallery/', loadMyGallery);
 };

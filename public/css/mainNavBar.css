@@ -1,0 +1,25 @@
+nav {
+	background-color:red; 
+	margin-bottom:10px; 
+	height:80px;
+}
+
+nav img {
+	width:80px; 
+	padding-left:5px; 
+	padding-top:5px;
+}
+
+#dropdownOptions {
+	background-color:red;
+}
+
+#dropdownOptions a {
+	color:white; 
+	display: inline-flex;
+	vertical-align: middle;
+}
+
+#dropdownOptions a i{
+	margin-right:5px;
+}

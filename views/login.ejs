@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../views/partials/head %>
-	<title>Login CityKids</title>
-</head>
 
+  <% include ./partials/head %>
+  <!--   <link rel="stylesheet" type="text/css" href="/css/login.css"> -->
+
+  <title>Login Citykids</title>
+
+</head>
 <body ng-app="loginApp" ng-cloak>
 
-<div layout="row" layout-align="center" ng-controller="loginCtrl">
-  <div flex="30" layout="column">
+<!-- MAIN CONTAINER -->
+<div class="container" ng-controller="loginCtrl"> 
 
-		<div>
-      <img class="responsive-img left" src="/img/logo_citykids.png" style="width:140px; padding-left:5px; padding-top:5px">
+  <div class="row">
 
+  	<div class="col s12 center">
+      <img class="responsive-img" src="/img/logo_citykids.png" style="width:140px">
     </div>
 
-  	<form name="loginForm" >
+  	<form name="loginForm">
 
-      <md-input-container class="md-block">
+      <div class="col s12 m5 l5">
         <label><i class="material-icons prefix">account_circle</i> Login</label>
         <input required type="text" name="userLogin" ng-model="user" md-no-asterisk />
         <div ng-messages="loginForm.userLogin.$error" md-auto-hide="true" >
@@ -25,28 +29,32 @@
             Debe contar con un nombre de usuario para poder ingresar.
           </div>
         </div>
-    	</md-input-container>
+    	</div>
 
-      <md-input-container class="md-block">
+      <div class="">
         <label><i class="material-icons prefix">fingerprint</i> Password</label>
         <input required type="password" md-no-asterisk name="password"  ng-model="pwd">
         <div ng-messages="loginForm.password.$error" md-auto-hide="false">
         	<div ng-message="required">This is required.</div>
         </div>
-      </md-input-container>
+      </div>
 
-      <md-button class="md-warn md-raised md-hue-2" ng-click="login(user, pwd)">Entrar</md-button>
+      <button class="" ng-click="login(user, pwd)">Entrar</button>
 
     </form>
 
   </div>
   
 </div>
+<!-- MAIN CONTAINER end -->
 
-	<% include ../views/partials/footer %>
 
-	<!-- My Angular controller -->
-  <script src="../controllers/ctrllerLogin.js"></script>
-           
+
+
+<% include ./partials/footer %>
+
+<!-- My Angular controller -->
+<script src="../controllers/ctrllerLogin.js"></script>
+
 </body>
 </html>

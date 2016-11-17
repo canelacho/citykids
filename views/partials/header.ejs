@@ -1,7 +1,7 @@
-<nav style="background-color:red; margin-bottom:10px; height:80px">
+<nav>
   <div class="nav-wrapper">
     <a href="dashboard" class="brand-logo left">
-      <img class="responsive-img left" src="/img/logo_citykids.png" style="width:80px; padding-left:5px; padding-top:5px">
+      <img class="responsive-img left" src="/img/logo_citykids.png">
     </a>
     <ul class="right">
       <!-- Dropdown Trigger -->
@@ -15,15 +15,18 @@
 </nav>
 
 <!-- Dropdown Structure -->
-<ul id='dropdownOptions' class='dropdown-content' style="background-color:red">
-  <li><a href="#!" style="color:white; display: inline-flex;vertical-align: middle;"><i class="material-icons"  style="margin-right:5px">account_circle</i>Perfil</a></li>
+<ul id='dropdownOptions' class='dropdown-content'>
+  <li><a href="#!"><i class="material-icons">account_circle</i>Perfil</a></li>
   <li class="divider"></li>
-  <li><a href="#!" style="color:white; display: inline-flex;vertical-align: middle;"><i class="material-icons"  style="margin-right:5px">dashboard</i>Dashboard</a></li>
-  <li><a href="/gallery" style="color:white; display: inline-flex;vertical-align: middle;"><i class="material-icons"  style="margin-right:5px">photo_library</i>Gallery</a></li>
+  <li><a href="/dashboard"><i class="material-icons">dashboard</i>Dashboard</a></li>
+  <li><a href="/gallery"><i class="material-icons">photo_library</i>Gallery</a></li>
+  <li class="divider"></li>
+  <li><a href="/adminUsers"><i class="material-icons">account_box</i>Admin Users</a></li>
+  
   <li class="divider"></li>
   <li>
-    <a href="#!" style="color:white; display: inline-flex;vertical-align: middle;">
-      <i class="material-icons" style="margin-right:5px">exit_to_app</i>Cerrar Sesión 
+    <a href="#!">
+      <i class="material-icons">exit_to_app</i>Cerrar Sesión 
     </a>
   </li>
 </ul>

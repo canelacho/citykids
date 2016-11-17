@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	loadMyDash = function(req, res){
+	loadMyDashboard = function(req, res){
 		console.log('Route to area successful');
 		res.render('dashboard');
 	};
@@ -8,5 +8,5 @@ module.exports = function(app){
 
 	// Link routes
 
-	app.get('/dashboard/:id', loadMyDash);
+	app.get('/dashboard/', loadMyDashboard);
 };

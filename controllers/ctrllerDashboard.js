@@ -1,4 +1,4 @@
-var app = angular.module('dashboardApp', ['ngMaterial','ngMessages']);
+var app = angular.module('dashboardApp', []);
 
 app.controller('dashboardCtrl',['$scope','$http',function($scope,$http){
 	

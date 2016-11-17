@@ -1,4 +1,4 @@
-var app = angular.module('loginApp',['ngMaterial','ngMessages']);
+var app = angular.module('loginApp',[]);
 
 app.controller('loginCtrl',['$scope','$http','$window', function($scope, $http, $window){
 

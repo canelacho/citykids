@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../views/partials/head %>
+	<% include ./partials/head %>
 	<title>Login CityKids</title>
 </head>
 
 <body ng-app="dashboardApp" ng-cloak>
 
+	<div class="container" ng-controller="dashboardCtrl" >
 	
 	<% include ../views/partials/header %>
 
-	<div ng-controller="dashboardCtrl" layout="row">
+	
 		
-		
+		Dashboard
 
 
 	</div>
 
 
 
-	<% include ../views/partials/footer %>
+	<% include ./partials/footer %>
 
 	<!-- My Angular controller -->
   <script src="../controllers/ctrllerDashboard.js"></script>

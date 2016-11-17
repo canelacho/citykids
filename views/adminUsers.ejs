@@ -1,24 +1,193 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../views/partials/head %>
-	<title>Administrar: Usuario</title>
+
+	<% include ./partials/head %>
+
+	<link rel="stylesheet" type="text/css" href="/css/adminUser.css">
+
+	<title>Galeria Imagenes Citykids</title>
+
+	
+
 </head>
-<body>
 <body ng-app="adminUsersApp" ng-cloak>
-<div class="container" ng-controller="adminUsersCtrl">
-	<% include ../views/partials/header %>
+
+<!-- MAIN CONTAINER -->
+<div class="container" ng-controller="adminUsersCtrl"> 
+
+
+<!-- NAV BAR -->
+<% include ./partials/header %>
+<!-- NAV BAR end -->
+
+
+<!-- ADD USERS --> 
+<ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">person_add</i>Nuevo Usuario</div>
+    <div class="collapsible-body">
+    	
+		<div class="container" >
+
+		  <form class="col s12">
+
+		    <div class="row">
+		      <div class="input-field col s12 m6 l6">
+		        <input id="name" type="text" class="">
+		        <label for="name">Nombre</label>
+		      </div>
+		      <div class="input-field col s12 m6 l6">
+		        <input id="secondname" type="text" class="">
+		        <label for="secondname">Apellido</label>
+		      </div>
+		    </div>
+
+		    <div class="row">
+		    	<div class="input-field col s12 m6 l6">
+		        <input id="nickname" type="text" class="">
+		        <label for="nickname">Nickname</label>
+		      </div>
+		      <div class="input-field col s12 m6 l6">
+		        <input id="pwd" type="password" class="">
+		        <label for="pwd">Password</label>
+		      </div>
+		      
+		    </div>
+
+		    <div class="row">
+		      <div class="input-field col s12 m6 l6">
+				    <select class="icons">
+				      <option value="" disabled selected>Rol</option>
+				      <option value="" data-icon="/img/user2.png" class="left circle">Usuario</option>
+				      <option value="" data-icon="/img/teacher2.png" class="left circle">Teacher</option>
+				      <option value="" data-icon="/img/admin.png" class="left circle">Administrador</option>
+				    </select>
+				    <label>Rol de Usuario</label>
+					</div>
+		      <div class="input-field col s12 m6 l6">
+		        <input id="email" type="email" class="">
+		        <label for="email">Email</label>
+		      </div>
+		    </div>
+
+				<div class="row">
+					
+					<div class="col s12 m6 l6 center">
+				    <div class="switch">
+					    <label>
+					      Inactivo
+					      <input type="checkbox" checked>
+					      <span class="lever"></span>
+					      Activo
+					    </label>
+					  </div>
+					</div>
+
+				  <div class="file-field input-field col s12 m6 l6">
+			      <div class="btn blue">
+			        <span><i class="material-icons">add_a_photo</i></span>
+			        <input type="file">
+			      </div>
+			      <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text">
+			      </div>
+			    </div>
+				</div>
+
+				<div class="row">
+			    <div class="col s12 m6 l6">
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix">textsms</i>
+			          <input type="text" id="autocomplete-input" class="autocomplete">
+			          <label for="autocomplete-input">Autocompletado - Nombre Alumno</label>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="col s12 m6 l6">
+						<div class="chips"></div>	
+			    </div>
+			  </div>
+				
+				<div class="row" style="padding-top:30px">
+			  	<button class="btn right"><i class="material-icons">save</i></button>
+			  </div>
+
+		  </form>
+		</div>
+
+		</div>
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">photo_filter</i>Filtro y Busqueda</div>
+    <div class="collapsible-body">
+    	Aqui si ponemos los filtritos
+    </div>
+  </li>
+</ul>
+<!-- ADD USERS end --> 
+
+
+<!-- LOAD USER LIST -->
+
+<table class="highlight responsive-table">
+  <thead>
+    <tr>
+        <th data-field="name">Nombre</th>
+        <th data-field="secondname">Apellido</th>
+        <th data-field="nickname">Usuario</th>
+        <th data-field="rol">Rol</th>
+        <th data-field="options"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.rol }}</td>
+      <td class="right">
+      	<a class="waves-effect waves-light btn blue">
+      		<i class="material-icons">mode_edit</i>
+      	</a>
+      	<a class="waves-effect waves-light btn red">
+      		<i class="material-icons">delete_forever</i>
+      	</a>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>
+<!-- LOAD USER LIST -->
 
 
 
+</div> <!-- MAIN CONTAINER end -->
 
 
-	<% include ../views/partials/footer %>
+<% include ./partials/footer %>
 
-	<!-- My Angular controller -->
-  <script src="../controllers/ctrlleradminUsers.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('select').material_select();
 
-</div>
+	  $('input.autocomplete').autocomplete({
+	    data: {
+	      "Citykids": '/img/logo_citykids.png',
+	      "User": '/img/user2.png',
+	      "Google": 'http://placehold.it/250x250'
+	    }
+	  });
+
+	  $('.chips').material_chip();
+
+ 	 });
+</script>
+
+<!-- My Angular controller -->
+<script src="../controllers/ctrllerAdminUsers.js"></script>
 
 </body>
 </html>

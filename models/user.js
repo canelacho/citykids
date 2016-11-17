@@ -3,12 +3,14 @@ var mongoose = require('mongoose'),
 
 var userSchema = new Schema({
 	name: {type: String},
-	secondname: {type: String},
+	lastname: {type: String},
 	email: {type: String},
 	username: {type: String},
 	pwd: {type: String},
-	datecreate: {type: String},
-	sons: [{
+	rol: {type: String},
+	datecreate: {type: Date},
+	status: {type: Boolean},
+	children: [{
 		idson: {type: String},
 		name: {type: String}
 	}]

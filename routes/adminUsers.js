@@ -1,12 +1,14 @@
 module.exports = function(app){
 
-	loadMyDash = function(req, res){
-		console.log('Route to area successful');
-		res.render('dashboard');
+console.log('Route to area successful');
+
+	loadUsers = function(req, res){
+		
+		res.render('adminUsers');
 	};
 
 
 	// Link routes
 
-	app.get('/admin/:id', loadMyDash);
+	app.get('/adminUsers', loadUsers);
 };
