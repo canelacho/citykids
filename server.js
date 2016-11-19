@@ -6,6 +6,7 @@ var
 		bodyParser = require('body-parser'),
 		session = require('express-session'),
 		mongoose = require('mongoose'),
+		formidable = require('express-formidable'),
 		server = http.createServer(app);
 
 var session_middleware = require('./middlewares/session.js');
@@ -22,6 +23,7 @@ app.use(session({
 	resave: false,
 	saveUnitialized: false
 }));
+//app.use(formidable.parse({ keepExtensions: true }));
 
 mongoose.connect('mongodb://localhost/citykids', function(err, res) {
   if(err) {

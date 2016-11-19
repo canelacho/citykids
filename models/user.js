@@ -10,6 +10,8 @@ var userSchema = new Schema({
 	rol: {type: String},
 	datecreate: {type: Date},
 	status: {type: Boolean},
+	photoname: {type: Boolean},
+	photofile: {type: Boolean},
 	children: [{
 		idson: {type: String},
 		name: {type: String}

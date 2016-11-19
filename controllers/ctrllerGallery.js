@@ -13,6 +13,7 @@ app.controller('galleryCtrl',['$scope','$http', function($scope,$http){
 	$scope.like = function(likeName, indexLike){
 		likeName = 'Marcelino Pan y Vino'
 		$scope.pictures[indexLike].likes.push(likeName);
+		console.log($scope.pictures[indexLike].likes);
 	};
 
 
