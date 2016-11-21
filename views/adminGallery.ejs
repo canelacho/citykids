@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<% include ./partials/head %>
+
+	<link rel="stylesheet" type="text/css" href="/css/adminGallery.css">
+
+	<title>Administrar Galeria Imagenes Citykids</title>
+
+
+</head>
+<body ng-app="adminGalleryApp" ng-cloak>
+
+<!-- MAIN CONTAINER -->
+<div class="container" ng-controller="adminGalleryCtrl"> 
+
+
+<!-- NAV BAR -->
+<% include ./partials/header %>
+<!-- NAV BAR end -->
+
+<h4>Administracion Galleria de Imagenes</h4>
+
+
+
+<form action="/adminGallery/postPhotos" enctype="multipart/form-data" method="post">
+    <input type="file" name="XimagenX" multiple>
+    <input type="submit" value="Upload photo">
+</form>
+
+
+<script>x="<%-files%>";</script>
+<div>
+aqui vamos a escribir <%- files %>
+
+	<div ng-repeat="foto in fotos">
+		<img ng-src="photos/uploads/{{ foto }}">
+	</div>
+</div>
+
+
+<% include ./partials/footer %>
+
+<script type="text/javascript">
+	
+</script>
+
+<script src="js/angular-route/angular-route.js"></script>
+
+<!-- My Angular controller -->
+<script src="../controllers/crtllerAdminGallery.js"></script>
+
+</body>
+</html>

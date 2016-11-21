@@ -6,8 +6,12 @@ var
 		bodyParser = require('body-parser'),
 		session = require('express-session'),
 		mongoose = require('mongoose'),
-		formidable = require('express-formidable'),
+
+		multer  = require('multer');
+	  upload = multer({ dest: 'public/photos/uploadsTemp/' }),
+
 		server = http.createServer(app);
+		
 
 var session_middleware = require('./middlewares/session.js');
 
@@ -54,6 +58,7 @@ routes = require('./routes/dashboard')(app);
 routes = require('./routes/gallery')(app);
 
 routes = require('./routes/adminUsers')(app);
+routes = require('./routes/adminGallery')(app);
 
 server.listen(serverPort, function(){
 	console.log('Server running on ' + serverPort + ' port');
