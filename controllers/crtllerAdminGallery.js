@@ -10,7 +10,7 @@ app.controller('adminGalleryCtrl',['$scope','$http','$window','$routeParams', fu
   // obtengo del arreglo de x de ejs del front end el arreglo de imagenes en la carpeta uploads
   var newArray = window.x.split(",");
   // elimino del arreglo el .DS archivo oculto.
-  newArray.shift();
+  // newArray.shift(); // pero en el servidor no existe el archivo oculto asi que mejor no quitar.
   // genero un nuevo array y publico para que angular muestre.
   $scope.fotos = newArray;
 
