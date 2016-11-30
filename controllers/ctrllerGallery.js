@@ -4,6 +4,7 @@ app.controller('galleryCtrl',['$scope','$http', function($scope,$http){
 
 	console.log('Connected to angular in Gallery controller');
 	
+	
 	$scope.quantity = 3; // quantity to present in front
 	$scope.watchMore = function(){
 		$scope.quantity +=3

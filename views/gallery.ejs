@@ -8,8 +8,6 @@
 
 	<title>Galeria Imagenes Citykids</title>
 
-	
-
 </head>
 <body ng-app="galleryApp" ng-cloak>
 
@@ -65,7 +63,7 @@
   <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
 
   	<div id="imagen">
-  		<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+  		<a href="#megaModal" class="pictureWatermark" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
   			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
   		</a>
   		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
@@ -108,8 +106,9 @@
     <div class="modal-content">
 			<i class="material-icons modal-close right">close</i>
       <h4>Imagenes - Citykids</h4>
+
       
-      <img class="responsive-img modalImagen" ng-src="/photos/{{ showNewModal.picture }}" >
+      <img class="pictureWatermarkBig watermark responsive-img modalImagen" ng-src="/photos/{{ showNewModal.picture }}" >
       
       <p class="valign-wrapper">
       	<i class="material-icons modalCss">label_outline</i> Tags: {{ showNewModal.tags.join(', ') }} 
@@ -130,10 +129,11 @@
 <!-- GALLERY end -->
 
 
-
 </div> <!-- MAIN CONTAINER end -->
 
 <% include ./partials/footer %>
+
+
 
 <script>
 
@@ -152,12 +152,32 @@
       // },
       // complete: function() { alert('Closed'); } // Callback for Modal close
 	  });
+
+    // $(function() {
+    //   $('.pictureWatermark').watermark({
+    //     path: '/img/logo_citykids.png',
+    //     gravity: 'se',
+    //     opacity: '0.7',
+    //     outputWidth: 1500,
+    //     outputHeight: 1500,
+    //     outputType: 'jpeg',
+    //     margin: 10
+    //   });
+    // });
+
+    
+
 	});
+
 	
 </script>
 
 <!-- My Angular controller -->
 <script src="../controllers/ctrllerGallery.js"></script>
+
+
+
+
 
 </body>
 </html>

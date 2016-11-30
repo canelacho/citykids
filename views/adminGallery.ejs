@@ -8,6 +8,15 @@
 
 	<title>Administrar Galeria Imagenes Citykids</title>
 
+	<script type="text/javascript">
+		// Check for the various File API support.
+		if (window.File && window.FileReader && window.FileList && window.Blob) {
+			console.log('File system supported');
+		  // Great success! All the File APIs are supported.
+		} else {
+		  alert('The File APIs are not fully supported in this browser.');
+		}
+	</script>
 
 </head>
 <body ng-app="adminGalleryApp" ng-cloak>
@@ -19,6 +28,88 @@
 <!-- NAV BAR -->
 <% include ./partials/header %>
 <!-- NAV BAR end -->
+
+
+
+
+
+
+
+<form class="row">
+	<div class="col s12 m12 l12">
+		Nueva directiva
+		<div data-file-input="file" on-change="readFile()"></div>        
+	</div>
+	<hr>
+
+	<div class="col">
+		<div class="col s12 m2 l2">
+			img presente
+			<img ng-src="{{imageSrc}}"/>
+		</div>
+		<div class="col s12 m9 l9">
+			<input class="col s12" type="" name="group" value="grupo">
+			<input class="col s12" type="" name="tag" value="tags">
+			<input class="col s12" type="" name="comment" value="comment">
+		</div>
+		<div class="col s12 m1 l1">
+			<button>Eliminar</button>
+		</div>
+	</div>
+	<div class="col s12 m12 l12">
+		<button class="right">Subir todas las Foto(s)</button>
+	</div>
+</form>
+
+
+<hr>
+
+
+
+<input type="file" file="param.file"/>
+    <div>param.file: {{param.file}}</div> 
+
+
+
+<hr>
+
+
+
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    console.log('Archivos seleccionados:');
+    console.log(files);
+    console.log(files.length);
+    console.log(files[0].lastModified);
+    console.log(files[0].lastModifiedDate);
+    console.log(files[0].name);
+    console.log(files[0].size);
+    console.log(files[0].type);
+    
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', (f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(),' - ', f ,'</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+<hr>
+
+
+
 
 <h4>Administracion Galleria de Imagenes</h4>
 
@@ -35,18 +126,126 @@
 aqui vamos a escribir <%- files %>
 
 	<div ng-repeat="foto in fotos">
-		<img ng-src="photos/uploads/{{ foto }}">
+		<img name="testImg" ng-src="photos/uploads/{{ foto }}">
 	</div>
 </div>
 
 
+
+
+
+<h4>Galeria activa para edicion</h4>
+
+
+
+<div class="row" > 
+
+  <div id="frameInfoPicture" class="col s12 m6 l4" ng-repeat="gallery in pictures | filter: findByTag | orderBy:gallery.date | limitTo:quantity track by $index">	
+
+  	<div id="imagen">
+  		<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+  			<img class="responsive-img"  ng-src="/photos/{{ gallery.name }}">
+  		</a>
+  		<!-- data-caption="Les gusta a:  {{ gallery.likes.join(',  ') }}" -->
+		</div>
+
+    <ul id="optionsPicture" class="collection">
+    	<li class="collection-item valign-wrapper">
+    		<!-- <a href="#!" ng-click="like(idPicture, $index)"> -->
+    			<i class="material-icons">favorite</i>
+    		<!-- </a> --> <!-- if someone upload a picture should't give a likes -->
+      	<span id="meGustaTxt">{{ gallery.likes.length }} Me gusta</span> 
+    	</li>
+    	<a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+      	<li class="collection-item valign-wrapper boxTagComment">
+      		<i class="material-icons">label_outline</i>{{ gallery.tag.length }} Tags
+      	</li>
+      </a>
+      <a href="#megaModal" ng-click="sendInfoModal(gallery.name ,gallery.tag, gallery.comments)" >
+      	<li class="collection-item valign-wrapper boxTagComment">
+      		<i class="material-icons">speaker_notes</i>{{ gallery.comments.length }} Comentarios
+      	</li>
+      </a>
+      <a href="" ng-click="deletePicture(gallery.name ,gallery.tag, gallery.comments)" >
+	      <li class="collection-item valign-wrapper boxTagComment">
+	    		<i class="material-icons" style="color:red">delete_forever</i>Borrar esta Foto
+	    	</li>
+	    </a>
+
+    </ul>
+
+ 	</div> 
+ 	
+ 	<div id="morePicturesBtn" class="col s12 m12 l12">
+	  <button id="watchMore" class="waves-effect waves-light btn red" ng-click="watchMore()">
+	  	<i class="material-icons right">add_to_photos</i>Ver mas...
+	  </button>  
+	</div>
+
+
+
+ 	<!-- Modal Trigger -->
+  <!-- <a class="waves-effect waves-light btn red" href="#megaModal">Watch Out</a> -->
+
+  <!-- Modal Structure -->
+  <div id="megaModal" class="modal">
+    <div class="modal-content">
+			<i class="material-icons modal-close right">close</i>
+      <h4>Imagenes - Citykids</h4>
+
+      
+      <img class="pictureWatermarkBig watermark responsive-img modalImagen" ng-src="/photos/{{ showNewModal.picture }}" >
+      
+      <p class="valign-wrapper">
+      	<i class="material-icons modalCss">label_outline</i> Tags: {{ showNewModal.tags.join(', ') }} 
+      </p>
+      <p class="valign-wrapper">
+      	<i class="material-icons modalCss">speaker_notes</i> Comentarios: 
+      		<p ng-repeat="comment in showNewModal.comments">
+        		<strong>{{ comment.user }}</strong> {{ comment.msg }}
+      		</p>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cerrar</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- GALLERY end -->
+
+
+
+
 <% include ./partials/footer %>
 
-<script type="text/javascript">
+
+<script>
+
+	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal({
+      dismissible: false, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      in_duration: 200, // Transition in duration
+      out_duration: 200, // Transition out duration
+      starting_top: '4%', // Starting top style attribute
+      ending_top: '10%', // Ending top style attribute
+      // ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+      //   alert("Ready");
+      //   console.log(modal, trigger);
+      // },
+      // complete: function() { alert('Closed'); } // Callback for Modal close
+	  });   
+
+	});
 	
 </script>
 
-<script src="js/angular-route/angular-route.js"></script>
+
+<!-- angular dependency -->
+<script src="/js/angular-route/angular-route.js"></script>
 
 <!-- My Angular controller -->
 <script src="../controllers/crtllerAdminGallery.js"></script>

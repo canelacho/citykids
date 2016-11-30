@@ -13,17 +13,18 @@ var
 		server = http.createServer(app);
 		
 
-var session_middleware = require('./middlewares/session.js');
+var session_middleware = require('./middlewares/session');
 
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
+app.use('/app/controllers',express.static('controllers'));
 app.use('/controllers',express.static('controllers'));
 app.use('/routes',express.static('routes'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
-	secret: 'secretcitykids',
+	secret: 'secretcitykids57234098',
 	resave: false,
 	saveUnitialized: false
 }));
@@ -40,6 +41,8 @@ mongoose.connect('mongodb://localhost/citykids', function(err, res) {
 
 app.get('/', function(req, res){
 	res.render('login');
+	console.log('show if there is a session created')
+	console.log(req.session);
 });
 	
 app.get('/logout', function(req, res){
@@ -53,12 +56,16 @@ app.get('/logout', function(req, res){
 	});
 });
 
+
+app.use("/app", session_middleware);
+
 routes = require('./routes/login')(app);
 routes = require('./routes/dashboard')(app);
 routes = require('./routes/gallery')(app);
 
 routes = require('./routes/adminUsers')(app);
 routes = require('./routes/adminGallery')(app);
+
 
 server.listen(serverPort, function(){
 	console.log('Server running on ' + serverPort + ' port');

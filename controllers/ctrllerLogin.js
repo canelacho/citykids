@@ -13,7 +13,8 @@ app.controller('loginCtrl',['$scope','$http','$window', function($scope, $http, 
 		if(typeof userToCheck.usr !== 'undefined' && typeof userToCheck.pwd !== 'undefined'){
 			$http({method:'POST', url:'/login', data:{userToCheck} }).success(function(data, status, headers, config){
 				if(data){
-					$window.location.href = '/dashboard/' + data[0]._id;
+					// $window.location.href = '/dashboard/' + data[0]._id;
+					$window.location.href = '/app/dashboard/';
 				} else {
 					console.log('error login Ususario');
 				}

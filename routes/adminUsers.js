@@ -101,10 +101,10 @@ console.log('Route to area successful');
 
 
 	// Link routes
-	app.get('/adminUsers', loadPage);
-	app.get('/adminUsers/load', loadUsers);
-	app.get('/adminUsers/:id', findOneUser);
-	app.post('/adminUsers', saveUser);
-	app.put('/adminUsers/:id', updateUser);
-	app.delete('/adminUsers/:id', deleteUser);
+	app.get('/app/adminUsers', loadPage);
+	app.get('/app/adminUsers/load', loadUsers);
+	app.get('/app/adminUsers/:id', findOneUser);
+	app.post('/app/adminUsers', saveUser);
+	app.put('/app/adminUsers/:id', updateUser);
+	app.delete('/app/adminUsers/:id', deleteUser);
 };

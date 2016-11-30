@@ -1,6 +1,6 @@
 module.exports = function(app){
 
-	User = require('../models/user');
+	var User = require('../models/user');
 
 	loginGet = function(req, res){
 		res.render('login')
@@ -21,7 +21,8 @@ module.exports = function(app){
 				if(userFinded[0].username == req.body.userToCheck.usr && userFinded[0].pwd == req.body.userToCheck.pwd){
 					req.session.CitykidsSession = {
 						id: userFinded[0].id,
-						user: userFinded[0].username
+						user: userFinded[0].username,
+						type: userFinded[0].rol
 					}
 					console.log("usuario encontrado y enviado a angular");
 					res.send(userFinded);	

@@ -4,15 +4,15 @@ var fs = require('fs');
 
 	loadPage = function(req, res){
 
-
-		
 		fs.readdir('./public/photos/uploads/', function(error, files){
 			console.log('hay ' + files.length + ' imagenes en la carpeta');
       console.log('la primera es ' + files[1]);
+      files.shift();
 
       console.log('===============');
 			console.log('');
 			console.log('===============');
+			console.log(req.session);
 
       res.render('adminGallery', {files});
 		}); 
@@ -42,7 +42,7 @@ var fs = require('fs');
 
 
 // Link routes
-	app.get('/adminGallery', loadPage);
-  app.post('/adminGallery/postPhotos', upload.array('XimagenX',20), postPhotos);
+	app.get('/app/adminGallery', loadPage);
+  app.post('/app/adminGallery/postPhotos', upload.array('XimagenX',20), postPhotos);
 
 };
