@@ -5,7 +5,7 @@ app.controller('adminUsersCtrl',['$scope', '$http', '$window',function($scope, $
 	console.log('Connected to angular in Gallery controller');
 
 	var loadUsersList = function(){
-		$http({method:'GET',url:'/adminUsers/load' }).success(function(data,status,headers,config) {
+		$http({method:'GET',url:'/app/adminUsers/load' }).success(function(data,status,headers,config) {
       if(data){
       	// console.log('valor json: ' + JSON.stringify(data, null, 4));
         $scope.users = data;
