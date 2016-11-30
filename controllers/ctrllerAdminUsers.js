@@ -69,7 +69,7 @@ app.controller('adminUsersCtrl',['$scope', '$http', '$window',function($scope, $
 
   	//console.log("dato del select que busco: " + userData[0].rol)
   	console.log('data que llega de form: ' + JSON.stringify(userData, null, 4));
-    $http({method:'POST',url:'/adminUsers', data:{ userData } }).success(function(data,status,headers,config) {
+    $http({method:'POST',url:'/app/adminUsers', data:{ userData } }).success(function(data,status,headers,config) {
       if(data){
         console.log('User added and saved');
         console.log(data);
@@ -89,7 +89,7 @@ app.controller('adminUsersCtrl',['$scope', '$http', '$window',function($scope, $
 		$scope.btnUpdate = true;
 		$scope.idUpdate = id;
 
-		$http({method:'GET',url:'/adminUsers/' + id }).success(function(data,status,headers,config) {
+		$http({method:'GET',url:'/app/adminUsers/' + id }).success(function(data,status,headers,config) {
       if(data){
       	// console.log('valor json: ' + JSON.stringify(data, null, 4));
         console.log(data);
@@ -105,7 +105,7 @@ app.controller('adminUsersCtrl',['$scope', '$http', '$window',function($scope, $
 
 	$scope.updateUser = function(id, data){
 		console.log('guardo cambios nuevos del usuarios id: ' + id);
-		$http({method:'PUT', url:'/adminUsers/'+ id, data:{ data } }).success(function(data,status,headers,config){
+		$http({method:'PUT', url:'/app/adminUsers/'+ id, data:{ data } }).success(function(data,status,headers,config){
 			if(data){
 				console.log('User edited and saved: ' + data.name);
 				loadUsersList();
@@ -121,7 +121,7 @@ app.controller('adminUsersCtrl',['$scope', '$http', '$window',function($scope, $
 
 
 	$scope.deleteUser = function(id){
-		$http({method:'DELETE', url:'/adminUsers/' + id }).success(function(data,status,headers,config) {
+		$http({method:'DELETE', url:'/app/adminUsers/' + id }).success(function(data,status,headers,config) {
 			if(data){
 				console.log('User deleted');
 				loadUsersList();
